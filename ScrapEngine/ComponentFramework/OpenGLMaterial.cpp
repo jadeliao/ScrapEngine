@@ -11,7 +11,6 @@ bool OpenGLMaterial::OnCreate(){
 }
 
 void OpenGLMaterial::OnDestroy(){
-	//glDeleteTextures(1, &textureID);
 	isCreated = false;
 }
 

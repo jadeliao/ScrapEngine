@@ -171,7 +171,7 @@ void Scene0::HandleEvents(const SDL_Event &sdlEvent) {
 			
 			case RendererType::OPENGL:
 				newActor = std::make_shared<OpenGLActor>(nullptr, actorNameC);
-				renderer->DrawRay(Vec3(worldStart.x, worldStart.y, 0.0f), worldCoords);
+				//renderer->DrawRay(Vec3(worldStart.x, worldStart.y, 0.0f), worldCoords);
 				break;
 			}
 			//Grab components

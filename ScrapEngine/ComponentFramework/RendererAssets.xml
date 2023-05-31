@@ -17,10 +17,12 @@
 			<Material name="SkullBlue" filename="./textures/skull_blue.png"/>
 			<Material name="CubeRed" filename="./textures/red.png"/>
 
-			<Shader name ="PhongShader" vertFilename ="shaders/phong" fragFilename="shaders/phong"/>
-			<Shader name ="RayShader" vertFilename ="shaders/ray" fragFilename="shaders/ray"/>
-			<Shader name ="NormalShader" vertFilename ="shaders/drawNormals" fragFilename="shaders/drawNormals" geomFilename="shaders/drawNormals"/>
-			<Shader name ="LineShader" vertFilename ="shaders/drawLine" fragFilename="shaders/drawLine" geomFilename="shaders/drawLine"/>
+			<Shader name ="PhongShader" type ="OpenGL" vertFilename ="shaders/phongVert.glsl" fragFilename="shaders/phongFrag.glsl"/>
+			<Shader name ="RayShader" type ="OpenGL" vertFilename ="shaders/rayVert.glsl" fragFilename="shaders/rayFrag.glsl"/>
+			
+			<Shader name ="PhongShader" type ="Vulkan" vertFilename ="shaders/phong.vert.spv" fragFilename="shaders/phong.frag.spv"/>		
+			<Shader name ="NormalShader" type ="Vulkan" vertFilename ="shaders/drawNormals.vert.spv" fragFilename="shaders/drawNormals.frag.spv" geomFilename="shaders/drawNormals.geom.spv"/>
+			<Shader name ="LineShader" type ="Vulkan" vertFilename ="shaders/drawLine.vert.spv" fragFilename="shaders/drawLine.frag.spv" geomFilename="shaders/drawLine.geom.spv"/>
 
 			<!-->
 			<Shader name ="PhongShader" vertFilename ="shaders/phong.vert.spv" fragFilename="shaders/phong.frag.spv"/>

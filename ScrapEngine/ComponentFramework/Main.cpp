@@ -20,11 +20,32 @@ int main(int argc, char* args[]) {
 
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	{
+		bool initialize = false;
+		RendererType rendererType;
 		std::string name = { "TEngine" };
 		Debug::DebugInit(name + "_Log");
 		Debug::Info("Starting the GameSceneManager", __FILE__, __LINE__);
 
-		SceneManager* gsm = new SceneManager();
+		while (!initialize) {
+			char rendererChoice[1024] = "";
+			std::cout << "Choose renderer type (0)VULKAN (1)OPENGL:";
+			std::cin >> rendererChoice;
+			//Create Server
+			if (strcmp(rendererChoice, "0") == 0) {
+				rendererType = RendererType::VULKAN;
+				initialize = true;
+			}
+			//Create Client
+			else if (strcmp(rendererChoice, "1") == 0) {
+				rendererType = RendererType::OPENGL;
+				initialize = true;
+			}
+			else {
+				std::cout << "Invalid renderer type.\n";
+			}
+		}
+
+		SceneManager* gsm = new SceneManager(rendererType);
 		if (gsm->Initialize(name, 1280, 720) == true) {
 			gsm->Run();
 		}

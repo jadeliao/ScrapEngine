@@ -10,7 +10,7 @@ enum class RendererType;
 class SceneManager  {
 public:
 	
-	SceneManager();
+	SceneManager(RendererType rendererType_);
 	~SceneManager();
 	void Run();
 	bool Initialize(std::string name_, int width_, int height_);

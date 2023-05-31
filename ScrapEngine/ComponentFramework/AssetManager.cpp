@@ -139,17 +139,23 @@ void AssetManager::AddComponentData(XMLElement* componentData) {
 				}
 			}
 			else if (strcmp(componentType, "Shader") == 0) {
+				const XMLAttribute* shaderTypeAttribute = componentFirstElement->FindAttribute("type");
 				const XMLAttribute* vertFilenameAttribute = componentFirstElement->FindAttribute("vertFilename");
 				const XMLAttribute* fragFilenameAttribute = componentFirstElement->FindAttribute("fragFilename");
 				const XMLAttribute* geomFilenameAttribute = componentFirstElement->FindAttribute("geomFilename");
 
-				if ((!vertFilenameAttribute) || (!fragFilenameAttribute)) {
-					std::cerr << "No vertFilename or fragFilename Attribute \n";
+
+				if ((!shaderTypeAttribute) || (!vertFilenameAttribute) || (!fragFilenameAttribute)) {
+					std::cerr << "Shader loading error \n";
 				}
 				else {
+					//Get shader type
+					const char* shaderType = shaderTypeAttribute->Value();
+
+		
+					const char* vertFile = vertFilenameAttribute->Value();
+					const char* fragFile = fragFilenameAttribute->Value();
 					//Get the file names
-					//const char* vertFile = vertFilenameAttribute->Value();
-					//const char* fragFile = fragFilenameAttribute->Value();
 					const char* geomFile;
 					if (geomFilenameAttribute) {
 						geomFile = geomFilenameAttribute->Value();
@@ -157,34 +163,23 @@ void AssetManager::AddComponentData(XMLElement* componentData) {
 					else {
 						geomFile = "";
 					}
-					//const char* vertFileValid = vertFile;
-					//const char* fragFileValid = fragFile;
-					//const char* geomFileValid = geomFile;				
-					char* vertFileValid = new char[BUFFER_SIZE];
-					char* fragFileValid = new char[BUFFER_SIZE];
-					char* geomFileValid = new char[BUFFER_SIZE]; 
-					strcpy_s(vertFileValid, BUFFER_SIZE - 1, vertFilenameAttribute->Value());
-					strcpy_s(fragFileValid, BUFFER_SIZE - 1, fragFilenameAttribute->Value());
-					strcpy_s(geomFileValid, BUFFER_SIZE - 1, geomFile);
 					//Add valid file extension for each renderer type
+					//Only load the shader when the shader type matches with the renderer type
 					switch (renderer->getRendererType()) {
 					case RendererType::OPENGL:
-						//Be careful with the name when adding openGL shader file to XML
-						strcat_s(vertFileValid, BUFFER_SIZE, "Vert.glsl");
-						strcat_s(fragFileValid, BUFFER_SIZE, "Frag.glsl");
+						if (strcmp(shaderType, "OpenGL") == 0) {
+							renderer->LoadShader(componentName, vertFile, fragFile);
+						}
+
 						break;
 					case RendererType::VULKAN:
-						strcat_s(vertFileValid, BUFFER_SIZE, ".vert.spv");
-						strcat_s(fragFileValid, BUFFER_SIZE, ".frag.spv");
-						strcat_s(geomFileValid, BUFFER_SIZE, ".geom.spv");
-						break;
-					}
-					vertFileValid[BUFFER_SIZE - 1] = '\0';
-					fragFileValid[BUFFER_SIZE - 1] = '\0';
-					geomFileValid[BUFFER_SIZE - 1] = '\0';
-					renderer->LoadShader(componentName, vertFileValid, fragFileValid, geomFileValid);
 
-					//AddComponent<ShaderComponent>(componentName, nullptr, vertFile, fragFile);
+						if (strcmp(shaderType, "Vulkan") == 0) {
+							renderer->LoadShader(componentName, vertFile, fragFile, geomFile);
+							break;
+						}
+
+					}
 
 				}
 			}
@@ -280,7 +275,6 @@ void AssetManager::AddActorData(XMLElement* actorData) {
 			newActor->AddComponent<TransformComponent>(transform);
 			newActor->OnCreate();
 			renderer->AddActor(actorName, newActor);
-			//AddActor(actorName, newActor);
 		}
 		actorData = actorData->NextSiblingElement("Actor");
 	}

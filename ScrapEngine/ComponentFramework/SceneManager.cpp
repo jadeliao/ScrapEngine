@@ -12,10 +12,12 @@
 
 Renderer* Renderer::instance_ = nullptr;
 
-SceneManager::SceneManager(): 
+SceneManager::SceneManager(RendererType rendererType_):
 	currentScene(nullptr), timer(nullptr),
-	fps(60), isRunning(false), rendererType(RendererType::VULKAN),
-	renderer(nullptr), assetManager(nullptr), audioManager(nullptr), uiManager(nullptr), inputManager(nullptr) {}
+	fps(60), isRunning(false), rendererType(rendererType_),
+	renderer(nullptr), assetManager(nullptr), audioManager(nullptr), uiManager(nullptr), inputManager(nullptr) {
+
+}
 
 SceneManager::~SceneManager() {
 	if (currentScene) {

@@ -13,7 +13,9 @@ bool OpenGLMesh::OnCreate(){
 }
 
 void OpenGLMesh::OnDestroy(){
-    std::cout << "Destroying " << GetName() << "\n";
+    if (!isCreated) return;
+    
+    isCreated = false;
 }
 
 void OpenGLMesh::Update(const float deltaTime_)

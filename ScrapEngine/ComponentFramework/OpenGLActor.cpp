@@ -11,7 +11,7 @@ OpenGLActor::OpenGLActor(Component* parent_, const char* actorName_): Actor(pare
 }
 
 OpenGLActor::~OpenGLActor(){
-
+	OnDestroy();
 }
 
 bool OpenGLActor::OnCreate(){
@@ -32,7 +32,14 @@ bool OpenGLActor::OnCreate(){
 }
 
 void OpenGLActor::OnDestroy(){
+	if (!isCreated) return;
+	Debug::Info("Deleting assets for OpenGLActor: ", __FILE__, __LINE__);
+	for (auto component : components) {
+		component->OnDestroy();
+	}
+	isCreated = false;
 }
+
 
 void OpenGLActor::Update(const float deltaTime_)
 {

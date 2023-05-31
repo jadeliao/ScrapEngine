@@ -19,9 +19,9 @@ public:
 	ShaderComponent(Component* parent_, const char* componentName_, const char* vsFilename_, const char* fsFilename_, const char* gsFilename_):
 		Component(parent_, componentName_), vsFilename(vsFilename_), fsFilename(fsFilename_), gsFilename(gsFilename_) {}
 	virtual ~ShaderComponent() {
-		delete vsFilename;
-		delete fsFilename;
-		delete gsFilename;
+		//delete vsFilename;
+		//delete fsFilename;
+		//delete gsFilename;
 	}
 	virtual bool OnCreate() = 0;
 	virtual void OnDestroy() = 0;
