@@ -15,6 +15,9 @@
 [INFO]: Succeed to Load Scene Scene0
 [INFO]: Succeed to Load Assets for VulkanActor:
 		newActor0
+[INFO]: Succeed to Load Assets for VulkanActor:
+		newActor0
+[INFO]: Deleting assets for VulkanActor: 
 [INFO]: Deleting assets for VulkanActor: 
 [INFO]: Deleting assets for VulkanActor: 
 [INFO]: Deleting assets for VulkanActor: 

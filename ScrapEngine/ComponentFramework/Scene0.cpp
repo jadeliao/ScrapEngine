@@ -174,7 +174,7 @@ void Scene0::HandleEvents(const SDL_Event &sdlEvent) {
 				renderer->DrawRay(Vec3(worldStart.x, worldStart.y, 0.0f), worldCoords);
 				break;
 			}
-
+			//Grab components
 			newActor->AddComponent(mesh_);
 			newActor->AddComponent(material_);
 			newActor->AddComponent(shader_);
@@ -187,6 +187,8 @@ void Scene0::HandleEvents(const SDL_Event &sdlEvent) {
 
 			renderer->AddActor(newActor->GetName(), newActor);
 
+			//Clean up char memory
+			delete[] actorNameC;
 		}
 		
 	}
