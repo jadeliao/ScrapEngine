@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<RendererAssets>
+
+		<Component>
+	
+			<Mesh name="MarioModel" filename= "./meshes/Mario.obj"/>
+			<Mesh name="SkullModel" filename= "./meshes/Skull.obj"/>
+			<Mesh name="CubeModel" filename= "./meshes/Cube.obj"/>
+			
+			<Material name="MarioMain" filename="./textures/mario_main.png"/>
+			<Material name="MarioFire" filename="./textures/mario_fire.png"/>
+			<Material name="MarioBlack" filename="./textures/mario_mime.png"/>
+			<Material name="SkullNormal" filename="./textures/skull_texture.png"/>
+			<Material name="SkullDark" filename="./textures/skull_dark.png"/>
+			<Material name="SkullRed" filename="./textures/skull_red.png"/>
+			<Material name="SkullBlue" filename="./textures/skull_blue.png"/>
+			<Material name="CubeRed" filename="./textures/red.png"/>
+
+			<Shader name ="PhongShader" vertFilename ="shaders/phong" fragFilename="shaders/phong"/>
+			<Shader name ="RayShader" vertFilename ="shaders/ray" fragFilename="shaders/ray"/>
+			<Shader name ="NormalShader" vertFilename ="shaders/drawNormals" fragFilename="shaders/drawNormals" geomFilename="shaders/drawNormals"/>
+			<Shader name ="LineShader" vertFilename ="shaders/drawLine" fragFilename="shaders/drawLine" geomFilename="shaders/drawLine"/>
+
+			<!-->
+			<Shader name ="PhongShader" vertFilename ="shaders/phong.vert.spv" fragFilename="shaders/phong.frag.spv"/>
+			<Shader name ="NormalShader" vertFilename ="shaders/drawNormals.vert.spv" fragFilename="shaders/drawNormals.frag.spv" geomFilename="shaders/drawNormals.geom.spv"/>
+			<Shader name ="LineShader" vertFilename ="shaders/drawLine.vert.spv" fragFilename="shaders/drawLine.frag.spv" geomFilename="shaders/drawLine.geom.spv"/>
+			<-->
+
+		</Component>
+		
+	</RendererAssets>
+</Root>

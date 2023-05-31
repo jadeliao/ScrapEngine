@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<Scene0>
+		
+	<Actor name="Mario">
+		<Parent componentName="None"/>
+		<Mesh componentName="MarioModel"/>
+		<Material componentName="MarioMain"/>
+		<Shader componentName="PhongShader"/>
+		<Transform componentName="MarioTransform"
+				   posX ="0.0" poYX ="0.0" posZ ="0.0"
+				   angle="180.0" axisX ="0.0" axisY ="1.0" axisZ ="0.0"
+				   scaleX="1.0" scaleY="1.0" scaleZ="1.0"/>
+	</Actor>
+
+	<Actor name="Skull">
+		<Parent componentName="None"/>
+		<Mesh componentName="SkullModel"/>
+		<Material componentName="SkullNormal"/>
+		<Shader componentName="PhongShader"/>
+		<Transform componentName="SkullTransform"
+		   posX ="3.0" poYX ="0.0" posZ ="0.0"
+		   angle="0.0" axisX ="0.0" axisY ="0.0" axisZ ="0.0"
+		   scaleX="0.3" scaleY="0.3" scaleZ="0.3"/>
+
+	</Actor>
+
+	<Actor name="Cube">
+		<Parent componentName="None"/>
+		<Mesh componentName="CubeModel"/>
+		<Material componentName="CubeRed"/>
+		<Shader componentName="PhongShader"/>
+		<Transform componentName="CubeTransform"
+			posX ="-3.0" poYX ="0.0" posZ ="0.0"
+			angle="0.0" axisX ="0.0" axisY ="0.0" axisZ ="0.0"
+			scaleX="0.3" scaleY="0.3" scaleZ="0.3"/>
+	</Actor>
+		
+	</Scene0>
+</Root>

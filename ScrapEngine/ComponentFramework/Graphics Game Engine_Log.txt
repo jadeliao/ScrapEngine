@@ -1,0 +1,21 @@
+[INFO]: Starting the GameSceneManager
+[INFO]: VULKAN Renderer Created
+[INFO]: AssetManager Created
+[INFO]: Succeed to Load Asset RendererAssets
+[INFO]: UIManager Created
+[INFO]: AudioManager Created
+[INFO]: InputManager Created
+[INFO]: Created Scene0: 
+[INFO]: Succeed to Load Assets for VulkanActor:
+		Mario
+[INFO]: Succeed to Load Assets for VulkanActor:
+		Skull
+[INFO]: Succeed to Load Assets for VulkanActor:
+		Cube
+[INFO]: Succeed to Load Scene Scene0
+[INFO]: Deleting assets for Actor:Light
+[INFO]: Deleting assets for Actor:
+[INFO]: Deleting assets for VulkanActor: 
+[INFO]: Deleting assets for VulkanActor: 
+[INFO]: Deleting assets for VulkanActor: 
+[INFO]: Deleting the GameSceneManager
