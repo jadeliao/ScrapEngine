@@ -400,5 +400,5 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-!VulkanComponentFramework/ComponentFramework/meshes/*.obj
-!VulkanComponentFramework/Build/meshes/*.obj
+!ScrapEngine/ComponentFramework/meshes/*.obj
+!ScrapEngine/Build/meshes/*.obj
