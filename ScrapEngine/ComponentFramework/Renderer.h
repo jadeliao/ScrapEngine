@@ -84,16 +84,6 @@ public:
 	uint32_t getWidth() { return width; }
 	uint32_t getHeight() { return height; }
 
-	virtual void RemoveActor(const char* actorName_) {
-		for (auto actor_ : actorList) {
-			if (strcmp(actor_.first, actorName_) == 0) {
-				actor_.second->OnDestroy();
-				actorList.erase(actorName_);
-				break;
-			}
-		}
-	}
-
 	virtual Ref<MaterialComponent> GetTexture(const char* name_) {
 		for (auto texture_ : assetPool->textureList) {
 			if (strcmp(texture_.first, name_) == 0) {
@@ -191,16 +181,25 @@ public:
 		object_ = nullptr;
 		///This removes the component from the vector list
 		actorList.erase(actorName_);
+		delete actorName_;
 	}
 
 	std::unordered_map<const char*, Ref<Actor>> GetObjectList() const { return actorList; }
 
 	void RemoveAllObjects() {
-		for (auto object : actorList) {
-			object.second->OnDestroy();
+
+		while (!actorList.empty()) {
+			auto object_ = actorList.begin();
+			Ref<Actor> actor_ = object_->second;
+			const char* actorName_ = object_->first;
+			//Properly clean up the object and free the memory
+			actor_->OnDestroy();
+			actor_ = nullptr;
+			actorList.erase(object_);
+			delete actorName_;
 		}
-		actorList.clear();
 	}
+
 };
 
 

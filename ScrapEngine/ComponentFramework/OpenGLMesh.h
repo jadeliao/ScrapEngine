@@ -2,7 +2,7 @@
 #define OPENGLMESH_H
 
 #include "MeshComponent.h"
-
+#include <glew.h>
 #include <vector>
 #include "Vector.h"
 

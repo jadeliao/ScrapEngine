@@ -76,6 +76,7 @@ void AssetManager::LoadScene(const char* sceneName_) {
 }
 
 void AssetManager::OnDestroy() {
+	RemoveAllComponents();
 }
 
 XMLElement* AssetManager::ReadManiFest(const char* fileName_) {
@@ -112,8 +113,12 @@ void AssetManager::AddComponentData(XMLElement* componentData) {
 			std::cerr << "No First Element \n";
 		}
 		else {
-			//Get file name and add components		
+	
 			const char* componentType = componentFirstElement->Value();
+			//Copy the component name to a new char variable
+			//char* componentName = new char[100];
+			//strcpy_s(componentName, 100 - 1, componentFirstElement->FindAttribute("name")->Value());
+			//componentName[100 - 1] = '\0';
 			const char* componentName = componentFirstElement->FindAttribute("name")->Value();
 			//Create component accordingly and add to asset manager
 			if (strcmp(componentType, "Mesh") == 0) {
@@ -124,7 +129,6 @@ void AssetManager::AddComponentData(XMLElement* componentData) {
 				else {
 					const char* filename = componentFirstElement->FindAttribute("filename")->Value();
 					renderer->LoadModel(componentName, filename);
-					//AddComponent<MeshComponent>(componentName, nullptr, filename);
 				}
 			}
 			else if (strcmp(componentType, "Material") == 0) {
@@ -135,7 +139,6 @@ void AssetManager::AddComponentData(XMLElement* componentData) {
 				else {
 					const char* filename = componentFirstElement->FindAttribute("filename")->Value();
 					renderer->LoadTexture(componentName, filename);
-					//AddComponent<MaterialComponent>(componentName, nullptr, filename);
 				}
 			}
 			else if (strcmp(componentType, "Shader") == 0) {
@@ -150,9 +153,7 @@ void AssetManager::AddComponentData(XMLElement* componentData) {
 				}
 				else {
 					//Get shader type
-					const char* shaderType = shaderTypeAttribute->Value();
-
-		
+					const char* shaderType = shaderTypeAttribute->Value();	
 					const char* vertFile = vertFilenameAttribute->Value();
 					const char* fragFile = fragFilenameAttribute->Value();
 					//Get the file names
@@ -180,7 +181,6 @@ void AssetManager::AddComponentData(XMLElement* componentData) {
 						}
 
 					}
-
 				}
 			}
 		}
@@ -205,8 +205,10 @@ void AssetManager::AddActorData(XMLElement* actorData) {
 		else {
 
 			Ref<Actor> newActor;
-			//Get Actor name
-			const char* actorName = actorData->FindAttribute("name")->Value();
+			//Get Actor name and copy it to a new character
+			char* actorName = new char[100];
+			strcpy_s(actorName, 100 - 1, actorData->FindAttribute("name")->Value());
+			actorName[100 - 1] = '\0';
 			//Check actor data
 			std::string parentName = componentParentElement->FindAttribute("componentName")->Value();
 			

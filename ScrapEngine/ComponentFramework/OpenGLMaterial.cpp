@@ -1,7 +1,8 @@
-#define _CRTDBG_MAP_ALLOC
-#include "OpenGLMaterial.h"
 
-OpenGLMaterial::~OpenGLMaterial(){
+#include "OpenGLMaterial.h"
+#include <glew.h>
+
+OpenGLMaterial::~OpenGLMaterial() {
 }
 
 bool OpenGLMaterial::OnCreate(){

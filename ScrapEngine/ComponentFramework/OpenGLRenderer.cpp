@@ -75,6 +75,7 @@ void OpenGLRenderer::OnDestroy() {
 	SDL_GL_DeleteContext(context);
 	SDL_DestroyWindow(window);
 	window = nullptr;
+	RemoveAllObjects();
 }
 
 
@@ -559,7 +560,7 @@ void OpenGLRenderer::InitImGui(){
 	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 	// Setup Platform/Renderer backends
 	ImGui_ImplSDL2_InitForOpenGL(window, context);
-	ImGui_ImplOpenGL3_Init("#version 450");
+	ImGui_ImplOpenGL3_Init(version);
 }
 
 void OpenGLRenderer::setAttributes(int major_, int minor_) {

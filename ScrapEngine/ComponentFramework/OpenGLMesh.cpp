@@ -14,7 +14,6 @@ bool OpenGLMesh::OnCreate(){
 
 void OpenGLMesh::OnDestroy(){
     if (!isCreated) return;
-    
     isCreated = false;
 }
 

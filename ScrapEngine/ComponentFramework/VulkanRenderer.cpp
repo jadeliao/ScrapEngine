@@ -260,6 +260,7 @@ void VulkanRenderer::cleanup() {
         vkDestroyImageView(device, texture_->textureImageView, nullptr);
         vkDestroyImage(device, *texture_->textureImage, nullptr);
         vkFreeMemory(device, *texture_->textureMemory, nullptr);
+        //delete vulkanMaterial_.first;
     }
 
     //Destroy models
@@ -269,6 +270,7 @@ void VulkanRenderer::cleanup() {
         vkFreeMemory(device, mesh_->vertex->second, nullptr);
         vkDestroyBuffer(device, mesh_->index->first, nullptr);
         vkFreeMemory(device, mesh_->index->second, nullptr);
+        //delete vulkanModel_.first;
     }
 
     //Destroy pipeline
@@ -277,6 +279,7 @@ void VulkanRenderer::cleanup() {
         vkDestroyDescriptorSetLayout(device, pipeline_->descriptorSetLayout, nullptr);
         vkDestroyPipelineLayout(device, pipeline_->pipelineLayout, nullptr);
         vkDestroyPipeline(device, pipeline_->graphicsPipeline, nullptr);
+        //delete vulkanPipeline.first;
     }
 
     //Destroy descriptor pool

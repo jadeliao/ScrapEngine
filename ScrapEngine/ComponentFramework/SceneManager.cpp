@@ -42,12 +42,6 @@ SceneManager::~SceneManager() {
 		uiManager = nullptr;
 	}
 
-	if (assetManager) {
-		assetManager->OnDestroy();
-		delete assetManager;
-		assetManager = nullptr;
-	}
-
 	if (inputManager) {
 		delete inputManager;
 		inputManager = nullptr;
@@ -57,6 +51,13 @@ SceneManager::~SceneManager() {
 		delete renderer;
 		renderer = nullptr;
 	}
+
+	if (assetManager) {
+		assetManager->OnDestroy();
+		delete assetManager;
+		assetManager = nullptr;
+	}
+
 	Debug::Info("Deleting the GameSceneManager", __FILE__, __LINE__);
 }
 
@@ -155,8 +156,6 @@ void SceneManager::Run() {
 	isRunning = true;
 	while (isRunning) {
 		GetEvents();
-		//inputManager->Update(currentScene);
-		//inputManager->Run();
 		timer->UpdateFrameTicks();
 		currentScene->Update(timer->GetDeltaTime());
 		uiManager->Update(currentScene);
@@ -181,9 +180,6 @@ void SceneManager::GetEvents() {
 			case SDL_SCANCODE_ESCAPE:
 				uiManager->openMenu("OptionMenu");
 				break;
-			//case SDL_SCANCODE_Q:
-			//	isRunning = false;
-			//	return;
 
 			case SDL_SCANCODE_F1:
 				///BuildScene(SCENE1);
@@ -208,6 +204,7 @@ void SceneManager::GetEvents() {
 			case SDL_SCANCODE_F6:
 				///BuildScene(SCENE6);
 				break;
+
 			case SDL_SCANCODE_F11:
 				//Reset renderer type
 				RendererReset(RendererType::OPENGL);

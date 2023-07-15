@@ -108,6 +108,7 @@ void Scene0::HandleEvents(const SDL_Event &sdlEvent) {
 	}
 	else if (sdlEvent.type == SDL_MOUSEBUTTONDOWN) {
 		if (sdlEvent.button.button == SDL_BUTTON_LEFT) {
+			static int number = 0;
 			Vec3 mouseCoords(static_cast<float>(sdlEvent.button.x), static_cast<float>(sdlEvent.button.y), -1.0f);
 			Matrix4 ndc = MMath::viewportNDC(renderer->getWidth(), renderer->getHeight());
 			Matrix4 projection = camera->GetProjectionMatrix();
@@ -152,18 +153,12 @@ void Scene0::HandleEvents(const SDL_Event &sdlEvent) {
 			Ref<TransformComponent> transform_ = std::make_shared<TransformComponent>(nullptr, worldCoords, Quaternion(), transformInfo_->GetScale());
 
 			Ref<Actor> newActor;
-			std::string startName = "newActor";
-			std::string actorName = startName;
-			int number = 0;
-			char* actorNameC = new char[1024];
-			actorName = startName + std::to_string(number);
-			//Find a name that does not exist in the actor map
-			while (renderer->ContainActor(actorName.c_str())) {
-				number++;
-				actorName = startName + std::to_string(number);
-			}
-			strcpy_s(actorNameC, 1024 - 1, actorName.c_str());
-			actorNameC[1024 - 1] = '\0';
+			number++;
+			std::string actorName = "newActor" + std::to_string(number);
+			char* actorNameC = new char[100];
+			strcpy_s(actorNameC, 100 - 1, actorName.c_str());
+			actorNameC[100 - 1] = '\0';
+
 			switch (renderer->getRendererType()) {
 			case RendererType::VULKAN:
 				newActor = std::make_shared<VulkanActor>(nullptr, actorNameC);
@@ -188,7 +183,7 @@ void Scene0::HandleEvents(const SDL_Event &sdlEvent) {
 			renderer->AddActor(newActor->GetName(), newActor);
 
 			//Clean up char memory
-			delete[] actorNameC;
+			//delete[] actorNameC;
 		}
 		
 	}
@@ -253,7 +248,7 @@ void Scene0::Update(const float deltaTime) {
 		//Remove the actor when its life time reaches 0
 		float actor_lifetime = actor_.second->getLifeTime();
 		if (actor_lifetime < 0.0f) {
-			renderer->RemoveActor(actor_.first);
+			renderer->RemoveObject(actor_.first);
 		}
 		actor_lifetime-=deltaTime;
 		actor_.second->setLifeTime(true, actor_lifetime);

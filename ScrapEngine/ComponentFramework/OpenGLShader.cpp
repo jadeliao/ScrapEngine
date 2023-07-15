@@ -15,11 +15,6 @@ bool OpenGLShader::OnCreate() {
 }
 
 void OpenGLShader::OnDestroy() {
-	glDetachShader(shaderID, fragShaderID);
-	glDetachShader(shaderID, vertShaderID);
-	glDeleteShader(fragShaderID);
-	glDeleteShader(vertShaderID);
-	glDeleteProgram(shaderID);
 	isCreated = false;
 }
 

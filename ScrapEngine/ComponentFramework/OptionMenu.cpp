@@ -119,7 +119,7 @@ void OptionMenu::showObjectList() {
     }
     if (ImGui::Button("Delete##2")) {
         //Remove object from renderer
-        renderer->RemoveActor(selectedName);
+        renderer->RemoveObject(selectedName);
     }
 
     ImGui::End();

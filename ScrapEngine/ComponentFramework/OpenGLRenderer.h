@@ -48,6 +48,9 @@ public:
 
 private:
 	OpenGLRenderer();
+
+	const char* version = "#version 450";
+
 	/*int width, height;*/
 	SDL_Window* window;
 	SDL_GLContext context;
